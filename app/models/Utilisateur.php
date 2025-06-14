@@ -373,6 +373,24 @@ class Utilisateur {
 			return null;
 		}
 	}
+
+	public static function getAllUtilisateurs() {
+		$db = Database::getInstance();
+		$stmt = $db->query("SELECT * FROM utilisateurs");
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+	public static function deleteUtilisateur($id) {
+		$db = Database::getInstance();
+		$stmt = $db->prepare("DELETE FROM utilisateurs WHERE ID_Utilisateur = ?");
+		return $stmt->execute([$id]);
+	}
+
+	public static function countAll() {
+		$db = Database::getInstance();
+		$stmt = $db->query("SELECT COUNT(*) FROM utilisateurs");
+		return (int)$stmt->fetchColumn();
+	}
 }
 
 ?>

@@ -26,7 +26,7 @@
                         </div>
                         <div class="stat-info">
                             <h3>Produits</h3>
-                            <p>150</p>
+                            <p><?php echo $nbCreations; ?></p>
                         </div>
                     </div>
                     <div class="stat-card">
@@ -35,7 +35,7 @@
                         </div>
                         <div class="stat-info">
                             <h3>Commandes</h3>
-                            <p>25</p>
+                            <p><?php echo $nbCommandes; ?></p>
                         </div>
                     </div>
                     <div class="stat-card">
@@ -43,17 +43,8 @@
                             <i class="fas fa-users"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>Clients</h3>
-                            <p>100</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-euro-sign"></i>
-                        </div>
-                        <div class="stat-info">
-                            <h3>Revenus</h3>
-                            <p>15 000€</p>
+                            <h3>Utilisateurs</h3>
+                            <p><?php echo $nbUtilisateurs; ?></p>
                         </div>
                     </div>
                 </div>

@@ -32,7 +32,7 @@ class Database {
 	}
 
 	// Méthode pour tester la connexion à la base de données
-	public static function testConnection(): bool {
+	public static function testConnexion(): bool {
 		try {
 			$pdo = self::getInstance();
 			$pdo->query('SELECT 1');
@@ -44,7 +44,7 @@ class Database {
 }
 
 // // Test de la connexion
-// if (Database::testConnection()) {
+// if (Database::testConnexion()) {
 //     echo "<div style='background-color: #d4edda; color: #155724; padding: 10px; margin: 10px; border-radius: 5px;'>";
 //     echo "✅ La connexion à la base de données est établie avec succès !";
 //     echo "</div>";

@@ -44,7 +44,6 @@
             </form>
             <div class="admin-footer">
                 <p>Zone réservée aux administrateurs</p>
-                <p><a href="index.php?page=AdminLog" style="color: var(--secondary-color); text-decoration: underline;">Déjà un compte ? Se connecter</a></p>
             </div>
         </div>
     </div>

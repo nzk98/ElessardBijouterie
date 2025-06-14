@@ -66,4 +66,35 @@ class Admin {
         header('Location: index.php?page=Accueil');
         exit();
     }
+
+    public static function getAllAdmins() {
+        $db = Database::getInstance();
+        $stmt = $db->query("SELECT * FROM admin");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function deleteAdmin($id) {
+        $db = Database::getInstance();
+        $stmt = $db->prepare("DELETE FROM admin WHERE ID_Admin = ?");
+        return $stmt->execute([$id]);
+    }
+
+    public static function getAdminById($id) {
+        $db = Database::getInstance();
+        $stmt = $db->prepare("SELECT * FROM admin WHERE ID_Admin = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function updateAdmin($id, $email, $password = null) {
+        $db = Database::getInstance();
+        if ($password !== null && $password !== '') {
+            $hash = password_hash($password, PASSWORD_DEFAULT);
+            $stmt = $db->prepare("UPDATE admin SET Email_Admin = ?, MotdePasse = ? WHERE ID_Admin = ?");
+            return $stmt->execute([$email, $hash, $id]);
+        } else {
+            $stmt = $db->prepare("UPDATE admin SET Email_Admin = ? WHERE ID_Admin = ?");
+            return $stmt->execute([$email, $id]);
+        }
+    }
 } 

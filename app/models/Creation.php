@@ -203,4 +203,34 @@ class Creation {
             return false;
         }
     }
+
+    public static function countAll() {
+        $db = Database::getInstance();
+        $stmt = $db->query("SELECT COUNT(*) FROM creation");
+        return (int)$stmt->fetchColumn();
+    }
+
+    public static function getAllCreationsFull() {
+        $db = Database::getInstance();
+        $query = "SELECT c.*, cat.Nom_Categorie, mat.Nom_Matiere, GROUP_CONCAT(ic.URL_Image) as images
+                  FROM creation c
+                  LEFT JOIN catégorie_creation cat ON c.ID_Categorie = cat.ID_Categorie
+                  LEFT JOIN renfermer_creationmatiere rcm ON c.ID_Creation = rcm.ID_Creation
+                  LEFT JOIN matière mat ON rcm.ID_Matiere = mat.ID_Matiere
+                  LEFT JOIN image_creation ic ON c.ID_Creation = ic.ID_Creation
+                  GROUP BY c.ID_Creation";
+        $stmt = $db->query($query);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function deleteCreation($id) {
+        $db = Database::getInstance();
+        // Supprimer les images associées
+        $db->prepare("DELETE FROM image_creation WHERE ID_Creation = ?")->execute([$id]);
+        // Supprimer la liaison matière
+        $db->prepare("DELETE FROM renfermer_creationmatiere WHERE ID_Creation = ?")->execute([$id]);
+        // Supprimer la création
+        $stmt = $db->prepare("DELETE FROM creation WHERE ID_Creation = ?");
+        return $stmt->execute([$id]);
+    }
 }

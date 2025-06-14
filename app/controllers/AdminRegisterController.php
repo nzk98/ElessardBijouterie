@@ -4,8 +4,9 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 class AdminRegisterController {
     public function index() {
-        if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
-            header('Location: index.php?page=admin');
+        // Seul un admin connecté peut accéder à cette page
+        if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
+            header('Location: index.php?page=Accueil');
             exit();
         }
 

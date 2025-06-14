@@ -106,6 +106,11 @@ switch($page){
         $controller = new AdminFormCreationController();
         $controller -> index();
         break;
+    
+    case "AdminFormArticle":
+        $controller = new AdminFormArticle();
+        $controller->index();
+        break;
         
     case "admin":
     	$controller = new AdminController();
@@ -119,6 +124,30 @@ switch($page){
 
     case "AdminRegister-espace-2547":
         $controller = new AdminRegisterController();
+        $controller->index();
+        break;
+
+    case "AdminCarousel":
+        $controller = new AdminCarouselController();
+        if (isset($_GET['action']) && $_GET['action'] === 'toggleCarousel') {
+            $controller->toggleCarousel();
+        } else {
+            $controller->index();
+        }
+        break;
+        
+    case "AdminManage":
+        $controller = new AdminManageController();
+        $controller->index();
+        break;
+
+    case "AdminUsers":
+        $controller = new AdminUsersController();
+        $controller->index();
+        break;
+
+    case "AdminCreations":
+        $controller = new AdminCreationsController();
         $controller->index();
         break;
         

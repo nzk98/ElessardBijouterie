@@ -15,6 +15,14 @@ class AdminController {
         $pageStyle = "admin.css";
         $jsFile = ["admin.js"];
 
+        // Récupération des stats dynamiques
+        require_once __DIR__ . '/../models/Creation.php';
+        require_once __DIR__ . '/../models/Commande.php';
+        require_once __DIR__ . '/../models/Utilisateur.php';
+        $nbCreations = Creation::countAll();
+        $nbCommandes = Commande::countAll();
+        $nbUtilisateurs = Utilisateur::countAll();
+
        // Inclusion du header commun
 		include_once __DIR__ . '/../includes/header.php';
 

@@ -37,10 +37,7 @@ class AdminLogController {
         // Inclusion du header commun
         include_once __DIR__ . '/../includes/header.php';
 
-        // Afficher la sidebar seulement si l'admin est connecté
-        if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
-            include_once __DIR__ . '/../includes/admin_sidebar.php';
-        }
+        
 
         // Inclusion de la vue principale
         include __DIR__ . '/../views/adminLog.php';
